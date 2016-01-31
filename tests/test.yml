@@ -1,5 +1,15 @@
 ---
-- hosts: localhost
-  remote_user: root
+
+- hosts: all
+  become: yes
   roles:
-    - daemon-nodejs
+    - ryanlelek.packages
+    - nodesource.node
+
+- hosts: all
+  roles:
+    - role: ryanlelek.git-repo
+      git_repo_name: raneto
+      git_repo_url: https://github.com/gilbitron/Raneto.git
+    - role: ../../
+      daemon_name: raneto
