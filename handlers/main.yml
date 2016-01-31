@@ -1,1 +1,5 @@
 ---
+
+- name: Restart Daemon
+  become: yes
+  service: name={{ daemon_name }} state=restarted enabled=yes

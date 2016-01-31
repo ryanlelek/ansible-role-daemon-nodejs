@@ -1,1 +1,6 @@
 ---
+daemon_name: nodejs_daemon
+daemon_file: false
+daemon_command: npm start
+daemon_envvars: []
+npm_token: false
