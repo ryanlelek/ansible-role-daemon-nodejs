@@ -1,12 +1,15 @@
+---
+
 galaxy_info:
-  author: your name
-  description: 
-  company: your company (optional)
-  
+
+  author: Ryan Lelek
+  description: Run Node.js process as a Daemon with Upstart
+  company: AnsibleTutorials.com
+
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
   # issue_tracker_url: http://example.com/issue/tracker
-  
+
   # Some suggested licenses:
   # - BSD (default)
   # - MIT
@@ -15,8 +18,8 @@ galaxy_info:
   # - Apache
   # - CC-BY
   license: MIT
-  
-  min_ansible_version: 1.2
+
+  min_ansible_version: 2.0
 
   # Optionally specify the branch Galaxy will use when accessing the GitHub
   # repo for this role. During role install, if no tags are available,
@@ -25,7 +28,7 @@ galaxy_info:
   # branch will be accepted. Otherwise, in all cases, the repo's default branch
   # (usually master) will be used.
   #github_branch:
-  
+
   #
   # Below are all platforms currently available. Just uncomment
   # the ones that apply to your role. If you don't see your
@@ -132,8 +135,21 @@ galaxy_info:
   #  - lenny
   #  - squeeze
   #  - wheezy
-  
-  galaxy_tags: []
+  platforms:
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+
+  galaxy_tags:
+    - daemon
+    - daemonize
+    - node
+    - nodejs
+    - upstart
+    - pm2
+    - forever
+    - nohup
     # List tags for your role here, one per line. A tag is
     # a keyword that describes and categorizes the role.
     # Users find roles by searching for tags. Be sure to
