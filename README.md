@@ -1,31 +1,57 @@
 Daemon - Node.js
 ================
 
-A brief description of the role goes here.
+Run Node.js process as a Daemon with Upstart (moving to Systemd soon)
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Required:  
+- Node.js (via role: nodesource.node)
+
+Recommended:
+- Git (via role: ryanlelek.packages)
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- **daemon_name**: nodejs_daemon
+- **daemon_command**: npm start
+- **daemon_envvars**: []
+- **npm_token**: false
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+- nodesource.node
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    # Run as Root
+    - hosts: all
+      become: yes
       roles:
-         - { role: username.rolename, x: 42 }
+        - ryanlelek.packages
+        - nodesource.node
+
+    # Run as User
+    - hosts: all
+      roles:
+
+        # Clone a Node.js Git repository
+        - role: ryanlelek.git-repo
+          git_repo_name: raneto
+          git_repo_url: https://github.com/gilbitron/Raneto.git
+
+        # Daemonize
+        # Runs `make deploy` beforehand
+        - role: ryanlelek.daemon-nodejs
+          daemon_name: raneto
+          daemon_command: npm start
+          daemon_envvars:
+            - { key: NODE_ENV, value: PRODUCTION }
+            - { key: PORT,     value: 3000 }
 
 License
 -------
@@ -35,4 +61,5 @@ MIT
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Created by [Ryan Lelek](https://www.ryanlelek.com)  
+Part of [AnsibleTutorials.com](http://www.ansibletutorials.com)
