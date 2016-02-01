@@ -22,7 +22,7 @@ respawn
 script
 
   export HOME="/home/{{ ansible_ssh_user }}"
-  echo $$ > /home/{{ ansible_ssh_user }}/logs/{{ daemon_name }}.pid
+  echo $$ > /home/{{ ansible_ssh_user }}/pids/{{ daemon_name }}.pid
   cd /home/{{ ansible_ssh_user }}/{{ daemon_name }}
   #exec /usr/bin/nodejs /home/{{ ansible_ssh_user }}/{{ daemon_name }}/{{ daemon_file }} >> /home/{{ ansible_ssh_user }}/logs/{{ daemon_name }}.log 2>&1
   exec {{ daemon_command }} >> /home/{{ ansible_ssh_user }}/logs/{{ daemon_name }}.log 2>&1
@@ -37,7 +37,7 @@ end script
 
 pre-stop script
 
-  rm /home/{{ ansible_ssh_user }}/logs/{{ daemon_name }}.pid
+  rm /home/{{ ansible_ssh_user }}/pids/{{ daemon_name }}.pid
   echo "[`date`] Daemon {{ daemon_name }} Stopping" >> /home/{{ ansible_ssh_user }}/logs/{{ daemon_name }}.log
 
 end script

@@ -4,8 +4,12 @@
 ##### Daemon - Node.js #####
 ############################
 
-- name: Ensure Log Directory
+- name: Ensure Directory - ~/logs/
   file: path=/home/{{ ansible_ssh_user }}/logs state=directory owner={{ ansible_ssh_user }} group=sudo mode=0755
+  become: yes
+
+- name: Ensure Directory - ~/pids/
+  file: path=/home/{{ ansible_ssh_user }}/pids state=directory owner={{ ansible_ssh_user }} group=sudo mode=0755
   become: yes
 
 - name: Copy Node Upstart Daemon Service
