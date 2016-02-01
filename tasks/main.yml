@@ -4,12 +4,6 @@
 ##### Daemon - Node.js #####
 ############################
 
-- name: Make Deploy
-  command: make deploy chdir=/home/{{ ansible_ssh_user }}/{{ daemon_name }} removes=Makefile
-  become: no
-  changed_when: false
-  when: gitcode.changed
-
 - name: Ensure Log Directory
   file: path=/home/{{ ansible_ssh_user }}/logs state=directory owner={{ ansible_ssh_user }} group=sudo mode=0755
   become: yes
