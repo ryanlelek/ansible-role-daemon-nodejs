@@ -18,7 +18,6 @@ Role Variables
 - **daemon_name**: nodejs_daemon
 - **daemon_command**: npm start
 - **daemon_envvars**: []
-- **npm_token**: false
 
 Dependencies
 ------------
@@ -41,13 +40,13 @@ Example Playbook
 
         # Clone a Node.js Git repository
         - role: ryanlelek.git-repo
-          git_repo_name: raneto
-          git_repo_url: https://github.com/gilbitron/Raneto.git
+          git_repo_name:    raneto
+          git_repo_url:     https://github.com/gilbitron/Raneto.git
+          git_repo_command: npm install
 
         # Daemonize
-        # Runs `make deploy` beforehand
         - role: ryanlelek.daemon-nodejs
-          daemon_name: raneto
+          daemon_name:    raneto
           daemon_command: npm start
           daemon_envvars:
             - { key: NODE_ENV, value: PRODUCTION }

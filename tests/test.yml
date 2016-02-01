@@ -11,5 +11,6 @@
     - role: ryanlelek.git-repo
       git_repo_name: raneto
       git_repo_url: https://github.com/gilbitron/Raneto.git
+      git_repo_command: npm install
     - role: ../../
       daemon_name: raneto
