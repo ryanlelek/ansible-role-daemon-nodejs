@@ -4,10 +4,6 @@
 ##### Daemon - Node.js #####
 ############################
 
-- name: Copy .npmrc to project
-  become: yes
-  template: src=npmrc.j2 dest=/home/{{ ansible_ssh_user }}/{{ daemon_name }}/.npmrc owner={{ ansible_ssh_user }} group=sudo mode=0644
-
 - name: Make Deploy
   command: make deploy chdir=/home/{{ ansible_ssh_user }}/{{ daemon_name }} removes=Makefile
   become: no
